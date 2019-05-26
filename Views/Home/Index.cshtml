@@ -1,0 +1,68 @@
+﻿@using StockWatch.Models;
+@model IndexViewModel;
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+
+<div id="root">
+    <!-- <input type="text" id="ticker" />
+    <button type="button" onclick="requestStockData()">Submit</button>
+    <div id="stock_data"></div> -->
+
+    <div>
+        <form method="post" action="/Home/AddStock" method="post" enctype="multipart/form-data">
+            <input type="text" name="stockticker" id="stock_ticker" placeholder="Stock Ticker"/>
+            <input type="text" name="companyname" id="company_name" placeholder="Company Name"/>
+            <input type="submit" value="Add" />
+        </form>
+    </div>
+</div>
+
+
+<table id="table_root"> 
+    <tbody>
+        <tr>
+            <th>Ticker</th>
+            <th>Price</th>
+            <th>200-day SMA</th>
+            <th>RSI</th>
+            <th>MACD</th>
+            <th>ADX</th>
+            <th>Trend</th>
+            <th></th>
+        </tr>
+        <tr v-for="stock in message.stocks">
+            <td>
+                {{ stock.name }}
+            </td>
+            <td>
+                {{ stock.price }}
+                <!-- Price column --> 
+            </td>
+            <td>
+                {{ stock.twoHundredDay }}
+                <!-- 200 Day SMA column -->
+            </td>
+            <td>
+                {{ stock.rsi }}
+                <!-- RSI column --> 
+            </td>
+            <td>
+                {{ stock.macd }}
+                <!-- MACD column -->
+            </td>
+            <td>
+                {{ stock.adx }}
+                <!-- ADX column -->
+            </td>
+            <td>
+                {{ stock.trend }}
+                <!-- Trend column -->
+            </td>
+            <td>
+                <button v-on:click="getStockIndicators(stock)">Update</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
