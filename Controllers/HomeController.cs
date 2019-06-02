@@ -32,16 +32,12 @@ namespace StockWatch.Controllers
         public IActionResult GetStocks()
         {
             JsonResult data = new JsonResult(_context.Stocks);
-            // for(var i = 0; i < _context.Stocks.Count(); i++)
-            // {
-            //     data.;
-            // }
-
             return data;
         }
         public IActionResult RemoveStock(string ticker)
         {
-            _context.Stocks.Remove(_context.Stocks.Where(s => s.Ticker == ticker).FirstOrDefault());
+            _context.Stocks.Remove(_context.Stocks.Single(s => s.Ticker == ticker));
+            _context.SaveChanges();
             return RedirectToAction("Index");
         }
         public IActionResult Privacy()

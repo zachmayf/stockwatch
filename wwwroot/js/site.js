@@ -23,9 +23,6 @@ function requestStockData() {
       }
     },
     methods: {
-      reverseMessage: function () {
-        // this.message = this.message.split('').reverse().join('');
-      },
       getStockIndicators: function (ticker) {
         var indicators = [
           {
@@ -105,14 +102,13 @@ function requestStockData() {
                   var obj = data[keys[i].keyName.toString()];
                   var mostRecentObj = obj[Object.keys(obj)[0]]; 
                   if(mostRecentObj["4. close"] != null) {
-                    ticker.price = mostRecentObj["4. close"];
-                    //console.log(ticker.price);
+                    ticker.price = "$" + mostRecentObj["4. close"];
                   }
                   else if(mostRecentObj["RSI"] != null) {
                     ticker.rsi = mostRecentObj["RSI"];
                   }
                   else if(mostRecentObj["SMA"] != null) {
-                    ticker.twoHundredDay = mostRecentObj["SMA"];
+                    ticker.twoHundredDay = "$" + mostRecentObj["SMA"];
                   }
                   else if(mostRecentObj["ADX"] != null) {
                     ticker.adx = mostRecentObj["ADX"];

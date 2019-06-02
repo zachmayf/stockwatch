@@ -61,6 +61,10 @@
             </td>
             <td>
                 <button v-on:click="getStockIndicators(stock)">Update</button>
+                <form method="post" action="/Home/RemoveStock" method="post" enctype="multipart/form-data" style="display: inline;">
+                    <input type="text" name="ticker" v-model="stock.name" style="display: none;"/>
+                    <input type="submit" value="Remove" />
+                </form>
             </td>
         </tr>
     </tbody>
